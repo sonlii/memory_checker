@@ -1,0 +1,13 @@
+.players {
+    white-space: nowrap;
+    align-items: center;
+    margin: 20px;
+}
+
+.active-player {
+    text-decoration: underline;
+}
+
+.inactive-player {
+    color: gray;
+}

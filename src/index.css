@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+}
+
+.main-container {
+  background-color:#083B4B;
+  display: flex;
+}

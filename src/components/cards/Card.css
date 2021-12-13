@@ -1,0 +1,12 @@
+.playing-card {
+    padding: 0;
+    margin: 2px;
+    border: 0;
+    height: 140px;
+    width: 100px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
