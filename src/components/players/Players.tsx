@@ -1,15 +1,15 @@
 import React from "react"
 import Player from "./Player";
 
-import './Players.css';
+import "./Players.css";
 
 function Players() {
     return (
         <div className="players">
             <p>Players Rating</p>
-            <hr />
-            <Player playerNumber={0}/>
-            <Player playerNumber={1}/>
+            <hr/>
+            <Player index={0}/>
+            <Player index={1}/>
         </div>
     );
 }
