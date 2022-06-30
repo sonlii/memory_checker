@@ -5,6 +5,8 @@ import {store} from "./store";
 import Players from "./components/players/Players";
 import CardsHolder from "./components/cards/CardsHolder";
 
+import "./index.css"
+
 const App = () => {
     return (
         <Provider store={store}>
