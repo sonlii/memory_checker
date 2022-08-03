@@ -1,15 +1,18 @@
 import React from "react"
+
 import Player from "./Player";
 
 import "./Players.css";
 
-function Players() {
+function Players(props: { n_players: number }) {
+    const n_players = props.n_players;
+
     return (
         <div className="players">
-            <p>Players Rating</p>
+            <p>SCORE</p>
             <hr/>
-            <Player index={0}/>
-            <Player index={1}/>
+            {Array.from(Array(n_players).keys())
+                .map((i) => <Player key={i} index={i}/>)}
         </div>
     );
 }

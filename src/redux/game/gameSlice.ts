@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const N_PLAYERS = 2;
+const MAX_PLAYERS_QTY = 4;
 
 enum GameStepStatus {
     STARTED,
@@ -17,25 +17,37 @@ interface GameState {
     status: GameStepStatus
 
     activePlayer: number
+    n_players: number
+
     score: number[]
+    attempts: number[]
 }
 
-const initialState = {
-    firstCard: null,
-    secondCard: null,
+function init(state: GameState, n_players: number) {
+    state.firstCard = null;
+    state.secondCard = null;
 
-    revealedCards: [],
-    status: GameStepStatus.FINISHED,
+    state.revealedCards = [];
+    state.status = GameStepStatus.FINISHED;
 
-    activePlayer: 0,
-    score: new Array<number>(N_PLAYERS).fill(0),
-} as GameState
+    state.activePlayer = 0;
+    state.n_players = 1;
+
+    state.score = new Array<number>(n_players).fill(0);
+    state.attempts = new Array<number>(n_players).fill(0);
+
+    return state
+}
 
 export const gameSlice = createSlice({
     name: 'game',
-    initialState,
+    initialState: init({} as GameState, MAX_PLAYERS_QTY),
 
     reducers: {
+        reset: (state: GameState, n_players: PayloadAction<number>) => {
+            init(state, n_players.payload)
+        },
+
         putCard: (state: GameState, index: PayloadAction<number>) => {
             if (state.firstCard == null) {
                 state.firstCard = index.payload;
@@ -45,6 +57,11 @@ export const gameSlice = createSlice({
             if (state.secondCard == null) {
                 state.secondCard = index.payload;
                 state.status = GameStepStatus.FULL;
+
+                const attempts = [...state.attempts];
+                attempts[state.activePlayer] += 1;
+                state.attempts = attempts;
+
                 return;
             }
         },
@@ -68,18 +85,22 @@ export const gameSlice = createSlice({
             if (state.firstCard != null) {
                 state.firstCard = null;
                 state.status = GameStepStatus.FINISHED;
-                state.activePlayer = (state.activePlayer + 1) % N_PLAYERS;
+                state.activePlayer = (state.activePlayer + 1) % state.n_players;
             }
         },
     },
 })
 
-export const {putCard, checkCards, popCard} = gameSlice.actions
+export const {reset, putCard, checkCards, popCard} = gameSlice.actions
 
 export default gameSlice.reducer
 
 export const selectPlayerScore = (state: GameState, player: number) => {
     return state.score[player];
+}
+
+export const selectPlayerAttempts = (state: GameState, player: number) => {
+    return state.attempts[player];
 }
 
 export const selectIsActivePlayer = (state: GameState, player: number) => {

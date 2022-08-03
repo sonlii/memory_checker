@@ -3,9 +3,9 @@ import {useDispatch} from "react-redux";
 
 
 import {AllCards} from "./Cards";
+import {putCard, checkCards, popCard} from "../../redux/game/gameSlice";
 import back from "../../images/face_down_cards/back.jpg";
 import exposed from "../../images/face_down_cards/revealed.jpg";
-import {putCard, checkCards, popCard} from "../../redux/game/gameSlice";
 
 import "./Card.css";
 
