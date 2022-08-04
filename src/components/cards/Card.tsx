@@ -26,7 +26,7 @@ function Card(props: { isActive: boolean, isRevealed: boolean, cardNumber: numbe
             setIsSelected(false);
             dispatch(checkCards());
             dispatch(popCard());
-        }, 3000);
+        }, 5000);
     };
 
     return (
