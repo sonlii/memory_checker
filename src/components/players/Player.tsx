@@ -11,7 +11,7 @@ function Player(props: { index: number }) {
     const attempts = useAppSelector(state => selectPlayerAttempts(state.game, props.index));
 
     return (
-        <div className={isActivePlayer ? "active-player" : "inactive-player"}>
+        <div className={isActivePlayer ? "player active-player" : "player inactive-player"}>
             <p>Player-{props.index + 1}.........{score}/{attempts}</p>
         </div>
     );

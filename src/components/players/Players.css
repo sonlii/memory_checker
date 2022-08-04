@@ -1,7 +1,25 @@
-.players {
+.players-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.players-dropdown:hover .players-dropdown-content {
+    display: block;
+}
+
+.players-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #083B4B;
+    border: 1px black solid;
+    box-shadow: black 3px 3px;
+    z-index: 1;
+}
+
+.player {
     white-space: nowrap;
-    align-items: center;
-    margin: 20px;
+    display: flex;
+    margin: 5px;
 }
 
 .active-player {

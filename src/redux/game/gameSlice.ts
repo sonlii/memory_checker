@@ -31,7 +31,7 @@ function init(state: GameState, n_players: number) {
     state.status = GameStepStatus.FINISHED;
 
     state.activePlayer = 0;
-    state.n_players = 1;
+    state.n_players = n_players;
 
     state.score = new Array<number>(n_players).fill(0);
     state.attempts = new Array<number>(n_players).fill(0);
