@@ -23,22 +23,24 @@ function Card(props: { isActive: boolean, isRevealed: boolean, cardNumber: numbe
         dispatch(putCard(cardNumber));
 
         setTimeout(function () {
+            setIsSelected(false);
             dispatch(checkCards());
             dispatch(popCard());
-            setIsSelected(false);
         }, 3000);
     };
 
     return (
-        <button className="playing-card" disabled={isSelected || isRevealed || !isActive} onClick={selectCard}>
-            {
-                isRevealed ?
-                    <img src={exposed} alt="playing-card"/> :
-                    isSelected ?
-                        <img src={AllCards[cardNumber]} alt="playing-card"/> :
-                        <img src={back} alt="playing-card"/>
-            }
-        </button>
+        isRevealed ?
+            <button className="playing-card" disabled={true}>
+                <img src={exposed} alt="playing-card"/>
+            </button> :
+            isSelected ?
+                <button className="playing-card" disabled={true}>
+                    <img src={AllCards[cardNumber]} alt="playing-card"/>
+                </button> :
+                <button className="playing-card" disabled={!isActive} onClick={selectCard}>
+                    <img src={back} alt="playing-card"/>
+                </button>
     );
 }
 
